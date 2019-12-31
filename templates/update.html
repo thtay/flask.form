@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class = "content">
+    
+    <h1 style="text-align: center">Updated Design</h1>
+    <div class="form">
+        <form action="/update/{{posts.design_id}}" method="POST">
+            <input type="text" name="name" id="name" 
+            value="{{posts.design_name}}">
+
+            <input type="text" name="content" id="content" 
+            value="{{posts.design_content}}">
+
+            
+            <input type="text" name="tag" id="tag"
+            value="{{posts.subscriptions}}">
+
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

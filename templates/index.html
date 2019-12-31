@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+<h1>Submit New Design</h1>
+<form action="/" method="POST">
+  <input type="text" name = "design_input" id="design_input" placeholder="Design Name">
+  <input type="text" name = "tag_input" id="tag_input" placeholder="Tag">
+  <br>
+  <br>
+  <input type="text" name="design_info" id="design_info" placeholder="Design Text Here">
+  <br>
+  <br>
+  <input type="submit" value = "Add ">
+</form>
+
+<h1>Search Design</h1>
+<form action="/" method="POST">
+  <input type="text" name = "tag_search" id="tag_search" placeholder="Search via Tag">
+
+  <input type="submit" value = "Add ">
+</form>
+
+<div class="content">
+  <h1> Posts </h1>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Info</th>
+      <th>Tag</th>
+      <th>Actions</th>
+    </tr>
+    {% for post in posts %}
+      <tr>
+        <td>{{ post.design_name }}</td>
+        <td>{{ post.design_content }}</td>
+        <td>{{ post.subscriptions }}</td>
+        <td>
+          <a href="/delete/{{post.design_id}}">Delete</a>
+          <br>
+          <a href="/update/{{post.design_id}}">Update</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="allTags">
+  <h1> Tags </h1>
+  <table>
+    <tr>
+      <th>Tags</th>
+      <th>Actions</th>
+    </tr>
+    {% for tag in tags %}
+      <tr>
+        <td>{{ tag.tag_name }}</td>
+
+        <td>
+          <a href="/filter/{{tag.tag_id}}">Filter By</a>
+
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
+
