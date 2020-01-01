@@ -49,6 +49,7 @@ def index():
         new_design = Design(design_name=design_content_input, 
                             design_content=design_info)
         new_tag = Tag(tag_name = tag_content)
+
         try:
             db.session.add(new_design)
             db.session.add(new_tag)  
@@ -64,8 +65,13 @@ def index():
 
 @app.route('/delete/<int:id>')
 def delete(id):
-    content_to_delete = Design.query.get_or_404(id)
+    #content_to_delete = Design.query.get_or_404(id)
     
+    try:
+        content_to_delete = Design.query.get_or_404(id)
+    except:
+        content_to_delete = Tag.query.get_or_404(id)
+
     try:
         db.session.delete(content_to_delete)
         db.session.commit()

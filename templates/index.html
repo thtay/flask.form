@@ -19,12 +19,12 @@
   <input type="submit" value = "Add ">
 </form>
 
-<h1>Search Design</h1>
+<!-- <h1>Search Design</h1>
 <form action="/" method="POST">
   <input type="text" name = "tag_search" id="tag_search" placeholder="Search via Tag">
 
-  <input type="submit" value = "Add ">
-</form>
+  <input type="submit" value = "Search ">
+</form> -->
 
 <div class="content">
   <h1> Posts </h1>
@@ -63,7 +63,7 @@
 
         <td>
           <a href="/filter/{{tag.tag_id}}">Filter By</a>
-
+          <a href="/delete/{{tag.tag_id}}">Delete Tag</a>
         </td>
       </tr>
     {% endfor %}
