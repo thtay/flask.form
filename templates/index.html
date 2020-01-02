@@ -39,7 +39,9 @@
       <tr>
         <td>{{ post.design_name }}</td>
         <td>{{ post.design_content }}</td>
-        <td>{{ post.subscriptions }}</td>
+        {% for designTag in post.subscriptions %}
+          <td>{{ designTag.tag_name }}</td>
+        {% endfor %}
         <td>
           <a href="/delete/{{post.design_id}}">Delete</a>
           <br>
@@ -62,8 +64,8 @@
         <td>{{ tag.tag_name }}</td>
 
         <td>
-          <a href="/filter/{{tag.tag_id}}">Filter By</a>
-          <a href="/delete/{{tag.tag_id}}">Delete Tag</a>
+          <a href="/search/{{tag.tag_id}}">Filter By</a>
+          <a href="/tagdelete/{{tag.tag_id}}">Delete Tag</a>
         </td>
       </tr>
     {% endfor %}

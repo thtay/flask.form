@@ -36,7 +36,7 @@ class Tag(db.Model):
     tag_name = db.Column(db.String(20))
 
     def __repr__(self):
-        return '<tag {}>'.format(self.tag_name)
+        return '<Tag {}>'.format(self.tag_name)
 
 
 @app.route("/", methods=['POST','GET'])
@@ -65,15 +65,22 @@ def index():
 
 @app.route('/delete/<int:id>')
 def delete(id):
-    #content_to_delete = Design.query.get_or_404(id)
-    
-    try:
-        content_to_delete = Design.query.get_or_404(id)
-    except:
-        content_to_delete = Tag.query.get_or_404(id)
+    design_to_delete = Design.query.get_or_404(id)
+
+    for each_tag in design_to_delete.subscriptions:
+        designs_using_tag = []
+        for any_design in each_tag.subscribers:
+            designs_using_tag.append(any_design.design_name)
+
+        if len(designs_using_tag) == 1:
+            tag_to_delete = each_tag
+            try:
+                db.session.delete(each_tag)
+            except:
+                return 'There was a problem deleting the tag from task'
 
     try:
-        db.session.delete(content_to_delete)
+        db.session.delete(design_to_delete)
         db.session.commit()
         return redirect('/')
     except:
@@ -95,7 +102,26 @@ def update(id):
         return render_template('update.html', posts = posts)
 
 
+@app.route('/search/<int:id>', methods=['GET','POST'])
+def search(id):
+    posts = []
+    tag = Tag.query.get_or_404(id)
+    for p in tag.subscribers:
+        posts.append(p)
 
+    return render_template('search.html', posts = posts)
+
+
+@app.route('/tagdelete/<int:id>')
+def tagdelete(id):
+    tag_to_delete = Tag.query.get_or_404(id)
+
+    try:
+        db.session.delete(tag_to_delete)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return 'There was a problem deleting that tag'
 
 if __name__ == "__main__":
     app.run(debug=True)
