@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exists
 from datetime import datetime
 from flask_migrate import Migrate
 from flask_wtf import FlaskForm
@@ -48,7 +49,14 @@ def index():
         design_info = request.form['design_info']
         new_design = Design(design_name=design_content_input, 
                             design_content=design_info)
-        new_tag = Tag(tag_name = tag_content)
+
+        #exists = db.session.query(Tag.tag_id).filter_by(tag_name=tag_content).scalar() is not None
+        exists = Tag.query.filter_by(tag_name=tag_content).first()
+        if exists is not None: 
+            #return 'This Tag is Found'
+            new_tag = exists
+        else:
+            new_tag = Tag(tag_name = tag_content)   
 
         try:
             db.session.add(new_design)
@@ -122,6 +130,7 @@ def tagdelete(id):
         return redirect('/')
     except:
         return 'There was a problem deleting that tag'
+
 
 if __name__ == "__main__":
     app.run(debug=True)
