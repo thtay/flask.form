@@ -47,7 +47,7 @@ def index():
         new_design = Design(design_name=design_content_input, 
                             design_content=design_info)
 
-        #exists = db.session.query(Tag.tag_id).filter_by(tag_name=tag_content).scalar() is not None
+        # exists = db.session.query(Tag.tag_id).filter_by(tag_name=tag_content).scalar() is not None
         exists = Tag.query.filter_by(tag_name=tag_content).first()
         if exists is not None: 
             #return 'This Tag is Found'
