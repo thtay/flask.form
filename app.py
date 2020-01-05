@@ -1,11 +1,8 @@
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import exists
 from datetime import datetime
 from flask_migrate import Migrate
 from flask_wtf import FlaskForm
-from wtforms import SelectField
-
 
 
 app = Flask(__name__)
