@@ -22,12 +22,13 @@ class Design (db.Model):
     design_content = db.Column(db.String(200))
     date_created = db.Column(db.DateTime, default= datetime.utcnow)
     subscriptions = db.relationship('Tag', 
-        secondary=subs, 
-        backref = db.backref('subscribers', lazy = 'dynamic')
+    secondary=subs,
+    backref = db.backref('subscribers', lazy='dynamic')
         )
 
     def __repr__(self):
         return '<Design {}>'.format(self.design_id)
+
 
 class Tag(db.Model):
     tag_id = db.Column(db.Integer, primary_key=True)
@@ -50,10 +51,10 @@ def index():
         # exists = db.session.query(Tag.tag_id).filter_by(tag_name=tag_content).scalar() is not None
         exists = Tag.query.filter_by(tag_name=tag_content).first()
         if exists is not None: 
-            #return 'This Tag is Found'
+            # return 'This Tag is Found'
             new_tag = exists
         else:
-            new_tag = Tag(tag_name = tag_content)   
+            new_tag = Tag(tag_name=tag_content)
 
         try:
             db.session.add(new_design)
@@ -78,7 +79,7 @@ def delete(id):
             designs_using_tag.append(any_design.design_name)
 
         if len(designs_using_tag) == 1:
-            tag_to_delete = each_tag
+            # tag_to_delete = each_tag
             try:
                 db.session.delete(each_tag)
             except:
