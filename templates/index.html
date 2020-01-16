@@ -10,7 +10,14 @@
 <h1>Submit New Design</h1>
 <form action="/" method="POST">
   <input type="text" name = "design_input" id="design_input" placeholder="Design Name">
-  <input type="text" name = "tag_input" id="tag_input" placeholder="Tag">
+  <!--<input type="text" name = "tag_input" id="tag_input" placeholder="Tag">-->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" crossorigin="anonymous">
+  <input type="text" class="form-control col-sm-12" value="" data-role="tagsinput" name="tag_input" id="tag_input" placeholder="Tags">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js" crossorigin="anonymous"></script>
+
   <br>
   <br>
   <input type="text" name="design_info" id="design_info" placeholder="Design Text Here">
@@ -25,6 +32,29 @@
 
   <input type="submit" value = "Search ">
 </form> -->
+
+<div class="row">
+  {% for post in posts %}
+    <div class="col-sm-4">
+      <div class="card w-70">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.design_name }}</h5>
+          <p class="card-text">{{ post.design_content }}</p>
+          {% for designTag in post.subscriptions %}
+            <td>{{ designTag.tag_name }}</td>
+          {% endfor %}
+          <a href="/delete/{{post.design_id}}">Delete</a>
+          <a href="/update/{{post.design_id}}">Update</a>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <br>
+    </div>
+  {% endfor %}
+</div>
+
 
 <div class="content">
   <h1> Posts </h1>
