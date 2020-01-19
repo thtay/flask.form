@@ -49,17 +49,22 @@ def index():
                             design_content=design_info)
 
         # exists = db.session.query(Tag.tag_id).filter_by(tag_name=tag_content).scalar() is not None
-        exists = Tag.query.filter_by(tag_name=tag_content).first()
-        if exists is not None: 
-            # return 'This Tag is Found'
-            new_tag = exists
-        else:
-            new_tag = Tag(tag_name=tag_content)
+        multi_tags = tag_content.split(',')
+        for each_tag in multi_tags:
+            exists = Tag.query.filter_by(tag_name=each_tag).first()
+            if exists is not None:
+                # return 'This Tag is Found'
+                new_tag = exists
+                new_design.subscriptions.append(each_tag)
+            else:
+                new_tag = Tag(tag_name=each_tag)
+                db.session.add(new_tag)
+                new_design.subscriptions.append(new_tag)
 
         try:
             db.session.add(new_design)
-            db.session.add(new_tag)  
-            new_design.subscriptions.append(new_tag)
+            # db.session.add(new_tag)
+            # new_design.subscriptions.append(new_tag)
             db.session.commit()
             return redirect('/')
         except:
@@ -128,6 +133,13 @@ def tagdelete(id):
         return redirect('/')
     except:
         return 'There was a problem deleting that tag'
+
+
+
+@app.route('/adddesign',methods=['GET','POST'])
+def adddesign():
+    return render_template('adddesign.html')
+
 
 
 if __name__ == "__main__":
