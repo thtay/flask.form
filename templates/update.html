@@ -13,14 +13,9 @@
         <form action="/update/{{posts.design_id}}" method="POST">
             <input type="text" name="name" id="name" 
             value="{{posts.design_name}}">
-
-            <input type="text" name="content" id="content" 
+            <input type="text" name="content" id="content"
             value="{{posts.design_content}}">
-
-            
-            <input type="text" name="tag" id="tag"
-            value="{{posts.subscriptions}}">
-
+            <input type="text" class="form-control col-sm-12" value="{{tag_string}}" data-role="tagsinput" name="tag_input" id="tag_input">
             <input type="submit" value="Update">
         </form>
     </div>
