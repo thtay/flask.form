@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+<!--{% block head %}-->
+
+<!--{% endblock %}-->
+
+{% block body %}
+<div class="row">
+  <div class="col-12">
+    <h1>Quick Add</h1>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-8">
+<div class="row">
+  {% for post in posts %}
+    <div class="col-sm-4">
+      <div class="card w-20">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.design_name }}</h5>
+          <p class="card-text">{{ post.design_content }}</p>
+          {% for designTag in post.subscriptions %}
+            <td>{{ designTag.tag_name }}</td>
+          {% endfor %}
+
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <a href="/delete/{{post.design_id}}">Delete</a>
+            <a href="/update/{{post.design_id}}">Update</a>
+          </small>
+        </div>
+      </div>
+      <br>
+    </div>
+  {% endfor %}
+</div>
+
+  </div>
+  <div class="col-2">
+    <h1>Tags checkbox</h1>
+    <form method="POST" action="/">
+    {% for tag in tags %}
+      <input type="checkbox" value="{{tag.tag_id}}" name="mycheckbox"> {{tag.tag_name }} <br>
+    {% endfor %}
+    <input type="submit" value="Filter by Tags">
+    </form>
+  </div>
+</div>
+{% endblock %}

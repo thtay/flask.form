@@ -15,32 +15,15 @@
 
 </head>
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="{{ url_for('index') }}">
+  <a class="navbar-brand" href="{{ url_for('blog.index') }}">
     <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
     Home
   </a>
-  <a class="navbar-brand" href="{{ url_for('adddesign') }}">
+  <a class="navbar-brand" href="{{ url_for('blog.create') }}">
     <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
     Add
   </a>
 </nav>
 
-
-<!--<form>-->
-  <!--<div class="form-group row">-->
-    <!--<label for="name" class="col-sm-2 col-form-label">Name</label>-->
-    <!--<div class="col-sm-10">-->
-      <!--<input type="text" class="form-control col-sm-12" value="" data-role="tagsinput" id="tags">-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</form>-->
-
 {% block body %}{% endblock %}
-<!--<body>-->
-    <!--<nav>-->
-        <!--Design Posts:-->
-        <!--<a href="{{ url_for('index') }}"> Home </a>-->
-    <!--</nav>-->
-
-<!--</body>-->
 </html>
