@@ -17,10 +17,11 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
+  side: 10px;
   background-color: white;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 .sidebar a {
@@ -49,7 +50,7 @@ body {
   cursor: pointer;
   background-color: white;
   color: black;
-  padding: 10px 15px;
+  padding: 1px 10px;
   border: none;
 }
 
@@ -69,6 +70,25 @@ body {
 }
 </style>
 
+{% if not posts %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h2>Looks like there is nothing added, why don't you add some.</h2>
+  </div>
+</div>
+{% endif %}
+
+{% if filtered_tags %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <td>Filtered by:</td>
+    {% for tags in filtered_tags %}
+      <td>{{tags.tag_name}}</td>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <h1>Tags</h1>
@@ -81,7 +101,7 @@ body {
 </div>
 
 <div id="main">
-  <button class="openbtn" onclick="openNav()">☰ Filter by Tags</button>
+  <button class="openbtn" onclick="openNav()">☰ Filter</button>
 </div>
 
 <script>
@@ -95,7 +115,6 @@ function closeNav() {
   document.getElementById("main").style.marginLeft= "0";
 }
 </script>
-
 
 <div class="row">
   <div class="col-8 container center_div">
