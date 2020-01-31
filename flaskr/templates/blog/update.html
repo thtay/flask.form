@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class = "container center-div">
+    <h1>Edit Design</h1>
+</div>
+
+<form action="/update/{{post.design_id}}" method="POST">
+<div class="container center_div">
+  <div class="form-group">
+    <label for="design_input">Design Title</label>
+  <input type="text" class="form-control is-invalid" name="name" id="name" value="{{post.design_name}}" required>
+  <div class="invalid-feedback">
+    Please provide a title.
+  </div>
+  </div>
+  <div class="form-group">
+    <label for="design_info">Design Title</label>
+      <textarea class="form-control is-invalid" name="content" id="content" rows="3" required>{{post.design_content}}</textarea>
+  <div class="invalid-feedback">
+    Please provide some details about the design.
+  </div>
+  </div>
+
+  <div class="form-group">
+    <label for="tag_input">Tags</label>
+    <input type="text" class="form-control col-sm-12" data-role="tagsinput" name="tag_input" id="tag_input" value="{{tag_string}}">
+  </div>
+
+    <button class="btn btn-primary" type="submit">
+        Edit Design
+    </button>
+</div>
+
+</form>
+{% endblock %}
