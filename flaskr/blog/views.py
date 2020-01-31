@@ -56,16 +56,17 @@ def delete(id):
 
 @bp.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
-    posts = Design.query.get_or_404(id)
+    post = Design.query.get_or_404(id)
     tag_string = ""
     orignal_tags = set()
-    for design_tag in posts.subscriptions:
+    for design_tag in post.subscriptions:
         tag_string += design_tag.tag_name + ","
         orignal_tags.add(design_tag.tag_name)
     if request.method == 'POST':
-        posts.design_content = request.form['blog']
-        posts.design_name = request.form['name']
+        post.design_content = request.form['content']
+        post.design_name = request.form['name']
         tag_content = request.form['tag_input']
+
         multi_tags = tag_content.split(',')
         for each_tag in multi_tags:
             #Add new tag
@@ -74,12 +75,12 @@ def update(id):
                 exists = Tag.query.filter_by(tag_name=each_tag).first()
                 if exists is not None:
                     # return 'This Tag is Found'
-                    posts.subscriptions.append(exists)
+                    post.subscriptions.append(exists)
                 else:
                     #Tag has never been used before
                     new_tag = Tag(tag_name=each_tag)
                     db.session.add(new_tag)
-                    posts.subscriptions.append(new_tag)
+                    post.subscriptions.append(new_tag)
             #Removed an existing tag
             else:
                 ##Tag is already part of deisgn
@@ -87,15 +88,12 @@ def update(id):
         if len(orignal_tags) > 0:
             for tag_to_delete in orignal_tags:
                 tag_id_to_delete = Tag.query.filter_by(tag_name=tag_to_delete).first()
-                posts.subscriptions.remove(tag_id_to_delete)
+                post.subscriptions.remove(tag_id_to_delete)
                 designs_using_tag = []
                 for any_design in tag_id_to_delete.subscribers:
                     designs_using_tag.append(any_design.design_name)
                 if len(designs_using_tag) > 0:
-                    try:
-                        db.session.delete(tag_id_to_delete)
-                    except:
-                        return 'There was a problem deleting the tag from task'
+                    db.session.delete(tag_id_to_delete)
             #Do nothing
         try:
             db.session.commit()
@@ -103,7 +101,7 @@ def update(id):
         except:
             return 'There was an error updating task'
     else:
-        return render_template("blog/index.html", posts=posts, tag_string=tag_string)
+        return render_template("blog/update.html", post=post, tag_string=tag_string)
 
 
 @bp.route('/search/<int:id>', methods=['GET', 'POST'])
