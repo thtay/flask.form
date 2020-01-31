@@ -108,16 +108,16 @@ function closeNav() {
               <p class="card-text">{{ post.design_content }}</p>
               <br>
               {% for designTag in post.subscriptions %}
-                <td>{{ designTag.tag_name }}</td>
+                <a href="/search/{{ designTag.tag_id }}" class="btn btn-primary btn-sm">{{ designTag.tag_name }}</a>
               {% endfor %}
 
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">
-                <a href="/delete/{{post.design_id}}">Delete</a>
-                <a href="/update/{{post.design_id}}">Update</a>
-              </small>
-            </div>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+              <a href="/delete/{{post.design_id}}">Delete</a>
+              <a href="/update/{{post.design_id}}">Update</a>
+            </small>
+          </div>
           </div>
           <br>
         </div>

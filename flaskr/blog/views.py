@@ -122,17 +122,17 @@ def create():
         design_info = request.form['design_info']
         new_design = Design(design_name=design_content_input,
                             design_content=design_info)
-
-        multi_tags = tag_content.split(',')
-        for each_tag in multi_tags:
-            exists = Tag.query.filter_by(tag_name=each_tag).first()
-            if exists is not None:
-                # return 'This Tag is Found'
-                new_design.subscriptions.append(exists)
-            else:
-                new_tag = Tag(tag_name=each_tag)
-                db.session.add(new_tag)
-                new_design.subscriptions.append(new_tag)
+        if tag_content != "":
+            multi_tags = tag_content.split(',')
+            for each_tag in multi_tags:
+                exists = Tag.query.filter_by(tag_name=each_tag).first()
+                if exists is not None:
+                    # return 'This Tag is Found'
+                    new_design.subscriptions.append(exists)
+                else:
+                    new_tag = Tag(tag_name=each_tag)
+                    db.session.add(new_tag)
+                    new_design.subscriptions.append(new_tag)
 
         try:
             db.session.add(new_design)
