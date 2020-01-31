@@ -15,15 +15,14 @@
 
 </head>
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="{{ url_for('blog.index') }}">
-    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-    Home
+  <a class="navbar-brand align-left" href="{{ url_for('blog.index') }}">
+    <img src="https://img.icons8.com/cute-clipart/64/000000/home.png" width="30" height="30" style= "float:left" class="d-inline-block align-top" alt="">
   </a>
   <a class="navbar-brand" href="{{ url_for('blog.create') }}">
-    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-    Add
+    <img src="https://img.icons8.com/cotton/64/000000/add--v2.png" width="30" height="30" class="d-inline-block align-top" alt="">
   </a>
 </nav>
+
 
 {% block body %}{% endblock %}
 </html>

@@ -15,26 +15,22 @@ body {
   width: 0;
   position: fixed;
   z-index: 1;
-  top: 0;
+  top: 62px;
   left: 0;
   side: 10px;
   background-color: white;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
-.sidebar a {
-  padding: 8px 8px 8px 32px;
+#sidebaritems {
+  padding: 8px 8px 8px 52px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 15px;
+  color: black;
   display: block;
   transition: 0.3s;
-}
-
-.sidebar a:hover {
-  color: #f1f1f1;
 }
 
 .sidebar .closebtn {
@@ -50,7 +46,7 @@ body {
   cursor: pointer;
   background-color: white;
   color: black;
-  padding: 1px 10px;
+  padding: 10px 10px;
   border: none;
 }
 
@@ -81,9 +77,9 @@ body {
 {% if filtered_tags %}
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <td>Filtered by:</td>
+    <td>Filtered by:   </td>
     {% for tags in filtered_tags %}
-      <td>{{tags.tag_name}}</td>
+      <span class="badge badge-secondary">{{ tags.tag_name }}</span>
     {% endfor %}
   </div>
 </div>
@@ -91,13 +87,16 @@ body {
 
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <h1>Tags</h1>
-    <form method="POST" action="/">
-    {% for tag in tags %}
-      <input type="checkbox" value="{{tag.tag_id}}" name="mycheckbox"> {{tag.tag_name }} <br>
-    {% endfor %}
-    <input type="submit" value="Filter">
-    </form>
+    <div id="sidebaritems">
+      <h1>Tags</h1>
+      <form method="POST" action="/">
+      {% for tag in tags %}
+        <input type="checkbox" value="{{tag.tag_id}}" name="mycheckbox"> {{tag.tag_name }} <br>
+      {% endfor %}
+        <br>
+      <input type="submit" value="Filter">
+      </form>
+    </div>
 </div>
 
 <div id="main">
