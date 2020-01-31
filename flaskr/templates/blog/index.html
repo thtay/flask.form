@@ -56,7 +56,8 @@ body {
 
 #main {
   transition: margin-left .5s;
-  padding: 16px;
+  padding: 10px;
+
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -91,7 +92,7 @@ body {
       <h1>Tags</h1>
       <form method="POST" action="/">
       {% for tag in tags %}
-        <input type="checkbox" value="{{tag.tag_id}}" name="mycheckbox"> {{tag.tag_name }} <br>
+        <input type="checkbox" value="{{tag.tag_id}}" name="mycheckbox">  {{tag.tag_name }} <br>
       {% endfor %}
         <br>
       <input type="submit" value="Filter">
@@ -132,8 +133,8 @@ function closeNav() {
           </div>
           <div class="card-footer">
             <small class="text-muted">
-              <a href="/delete/{{post.design_id}}">Delete</a>
-              <a href="/update/{{post.design_id}}">Update</a>
+              <a class="card-link" href="/delete/{{post.design_id}}">Delete</a>
+              <a class="card-link" href="/update/{{post.design_id}}">Update</a>
             </small>
           </div>
           </div>
