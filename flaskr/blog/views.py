@@ -17,13 +17,13 @@ bp: Blueprint = Blueprint("blog", __name__)
 def index():
     if request.method == 'POST':
         tag_id_list = request.form.getlist('mycheckbox')
-        filter_posts = []
+        filter_posts = set()
         filter_tags = []
         for tag_id in tag_id_list:
             tag = Tag.query.get_or_404(tag_id)
             filter_tags.append(tag)
             for post in tag.subscribers:
-                filter_posts.append(post)
+                filter_posts.add(post)
         tags = Tag.query.all()
         return render_template("blog/index.html", posts=filter_posts, tags=tags, filtered_tags=filter_tags)
     else:
