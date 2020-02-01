@@ -1,1 +1,1 @@
-web: gunicorn venv/bin/flask run
+web: gunicorn "flaskr/flaskr:create_app()"
