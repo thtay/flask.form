@@ -5,31 +5,35 @@
     <h1>Submit New Design</h1>
 </div>
 
-<form action="/create" method="POST">
-<div class="container center_div">
-  <div class="form-group">
-    <label for="design_input">Design Title</label>
+
+
+<form class="was-validated" action="/create" method="POST">
+<div class="container center_div mb-3">
+  <label for="design_input">Design Title</label>
   <input type="text" class="form-control is-invalid" name="design_input" id="design_input" placeholder="Title" required>
-  <div class="invalid-feedback">
-    Please provide a title.
-  </div>
-  </div>
-  <div class="form-group">
-    <label for="design_info">Design Title</label>
-      <textarea class="form-control is-invalid" name="design_info" id="design_info" placeholder="Some info about design" rows="3" required></textarea>
-  <div class="invalid-feedback">
-    Please provide some details about the design.
-  </div>
-  </div>
+  <!--<div class="invalid-feedback">-->
+    <!--Please provide a title.-->
+  <!--</div>-->
+  <br>
 
-  <div class="form-group">
-    <label for="tag_input">Tags</label>
-    <input type="text" class="form-control col-sm-12" value="" data-role="tagsinput" name="tag_input" id="tag_input" placeholder="Tags">
-  </div>
 
-    <button class="btn btn-primary" type="submit">
-        Submit Design
-    </button>
+  <label for="design_info">Design Title</label>
+  <textarea class="form-control is-invalid" name="design_info" id="design_info" placeholder="Some info about design" rows="3" required></textarea>
+  <!--<div class="invalid-feedback">-->
+    <!--Please provide some details about the design.-->
+  <!--</div>-->
+  <br>
+
+
+
+  <label for="tag_input">Tags</label>
+  <input type="text" class="form-control col-sm-12" value="" data-role="tagsinput" name="tag_input" id="tag_input" placeholder="Tags">
+  <br>
+  <br>
+
+  <button class="btn btn-primary" type="submit">
+      Submit Design
+  </button>
 </div>
 
 </form>
