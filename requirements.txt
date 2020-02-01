@@ -18,7 +18,7 @@ python-dateutil==2.8.1
 python-editor==1.0.4
 six==1.13.0
 SQLAlchemy==1.3.13
--e git+https://github.com/thtay/flask.form@953286c6634048bcb4251af87803501127c617ae#egg=UNKNOWN
+-e git+https://github.com/thtay/flask.form@3955e52ffc29efa6e9e65f2d5c5f9d405c883f61#egg=UNKNOWN
 visitor==0.1.3
 Werkzeug==0.16.0
 WTForms==2.2.1
