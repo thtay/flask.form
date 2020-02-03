@@ -1,0 +1,64 @@
+When I try to deploy I am getting the following error (using the heroku log --tails command)
+
+```
+at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=flasknoteapp.herokuapp.com request_id=8f13795b-41f3-4a35-b93b-8f97b98c32f5 fwd="71.235.184.204" dyno= connect= service= status=503 bytes= protocol=https
+```
+
+When deploying on heroku I am using gunicorn and with a Procfile, with the following script.
+
+Procfile
+```
+web: gunicorn "flaskr:create_app()"
+```
+
+I can start up the application locally using the script in the procfile (without the "web:") in the terminal. I looked up the error code and from what I can tell its the probably an error in my procfile but I do not know what exactly. If anyone has some experience in this I would love some help.
+
+Thanks,
+
+Below is some information about how my project is set-up and how I typically run it.
+
+_________________________________________________________________________
+The structure of the application is exactly as the factory layout for flask, more specifically the flaskr set up for flask and SQLAlchemy.
+https://github.com/pallets/flask-sqlalchemy/tree/master/examples/flaskr
+
+Example of the project structure (so you don't have to go through the link).
+
+/home/user/Projects/flask-tutorial
+├── flaskr/
+│   ├── __init__.py
+│   ├── db.py
+│   ├── schema.sql
+│   ├── auth.py
+│   ├── blog.py
+│   ├── templates/
+│   │   ├── base.html
+│   │   ├── auth/
+│   │   │   ├── login.html
+│   │   │   └── register.html
+│   │   └── blog/
+│   │       ├── create.html
+│   │       ├── index.html
+│   │       └── update.html
+│   └── static/
+│       └── style.css
+├── tests/
+│   ├── conftest.py
+│   ├── data.sql
+│   ├── test_factory.py
+│   ├── test_db.py
+│   ├── test_auth.py
+│   └── test_blog.py
+├── venv/
+├── setup.py
+└── MANIFEST.in
+
+The application call is inside the __init__.py in the flaskr directory. 
+
+To run the application I set the following command,
+
+```
+$ export FLASK_APP=flaskr
+$ export FLASK_ENV=development
+$ flask init-db
+$ flask run
+```
