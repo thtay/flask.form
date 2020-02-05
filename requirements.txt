@@ -1,4 +1,4 @@
-alembic==1.3.2
+alembic==1.4.0
 app==0.0.1
 Click==7.0
 dominate==2.4.0
@@ -9,16 +9,13 @@ Flask-SQLAlchemy==2.4.1
 Flask-WTF==0.14.2
 gunicorn==20.0.4
 itsdangerous==1.1.0
-Jinja2==2.10.3
-Mako==1.1.0
+Jinja2==2.11.1
+Mako==1.1.1
 MarkupSafe==1.1.1
-MyApplication==0.1.0
-pkg-resources==0.0.0
 python-dateutil==2.8.1
 python-editor==1.0.4
-six==1.13.0
+six==1.14.0
 SQLAlchemy==1.3.13
--e git+https://github.com/thtay/flask.form@4db4c00f4466cecfd26e88ffcf4473f3f788f5af#egg=UNKNOWN
 visitor==0.1.3
-Werkzeug==0.16.0
+Werkzeug==0.16.1
 WTForms==2.2.1
