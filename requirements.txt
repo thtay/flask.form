@@ -12,6 +12,8 @@ itsdangerous==1.1.0
 Jinja2==2.11.1
 Mako==1.1.1
 MarkupSafe==1.1.1
+ppconfig==1.0.3
+psycopg2==2.8.4
 python-dateutil==2.8.1
 python-editor==1.0.4
 six==1.14.0
